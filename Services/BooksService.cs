@@ -1,15 +1,13 @@
-﻿// <snippet_File>
-using FamilyParentageApi.Models;
+﻿using FamilyParentageApi.Models;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
 
 namespace FamilyParentageApi.Services;
-
+ 
 public class BooksService
 {
   private readonly IMongoCollection<Book> _booksCollection;
 
-  // <snippet_ctor>
   public BooksService(
       IOptions<BookStoreDatabaseSettings> bookStoreDatabaseSettings)
   {
@@ -22,7 +20,6 @@ public class BooksService
     _booksCollection = mongoDatabase.GetCollection<Book>(
         bookStoreDatabaseSettings.Value.BooksCollectionName);
   }
-  // </snippet_ctor>
 
   public async Task<List<Book>> GetAsync() =>
       await _booksCollection.Find(_ => true).ToListAsync();
@@ -39,4 +36,3 @@ public class BooksService
   public async Task RemoveAsync(string id) =>
       await _booksCollection.DeleteOneAsync(x => x.Id == id);
 }
-// </snippet_File>

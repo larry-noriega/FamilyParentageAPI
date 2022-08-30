@@ -17,9 +17,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.Configure<BookStoreDatabaseSettings>(
     builder.Configuration.GetSection("BookStoreDatabase"));
+builder.Services.Configure<FamilyParentageDatabaseSettings>(
+    builder.Configuration.GetSection("FamilyParentageDatabase"));
 // </snippet_BookStoreDatabaseSettings>
 
 builder.Services.AddSingleton<BooksService>();
+builder.Services.AddSingleton<FamilyParentageService>();
 // </snippet_BooksService>
 
 builder.Services.AddControllers()
