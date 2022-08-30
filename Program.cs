@@ -10,18 +10,18 @@ using FamilyParentageApi.Helpers;
 // </snippet_UsingHelpers>
 
 // <snippet_AddControllers>
-// <snippet_BooksService>
-// <snippet_BookStoreDatabaseSettings>
+// <snippet_FamilyService>
+// <snippet_FamilyStoreDatabaseSettings>
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.Configure<BookStoreDatabaseSettings>(
-    builder.Configuration.GetSection("BookStoreDatabase"));
 builder.Services.Configure<FamilyParentageDatabaseSettings>(
+    builder.Configuration.GetSection("FamilyParentageDatabase"));
+
+builder.Services.Configure<FamilyUserParentageDatabaseSettings>(
     builder.Configuration.GetSection("FamilyParentageDatabase"));
 // </snippet_BookStoreDatabaseSettings>
 
-builder.Services.AddSingleton<BooksService>();
 builder.Services.AddSingleton<FamilyParentageService>();
 builder.Services.AddSingleton<FamilyUserParentageService>();
 // </snippet_BooksService>
@@ -35,7 +35,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSwaggerGen(option =>
 {
-  // option.SwaggerDoc("v1", new OpenApiInfo { Title = "Demo API", Version = "v1" });
+
   option.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
   {
     In = ParameterLocation.Header,

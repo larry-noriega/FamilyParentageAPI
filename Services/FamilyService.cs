@@ -12,27 +12,27 @@ public class FamilyParentageService
     IOptions<FamilyParentageDatabaseSettings> familyParentageDatabaseSettings)
   {
     var mongoClient = new MongoClient(
-        familyParentageDatabaseSettings.Value.ConnectionString);
+      familyParentageDatabaseSettings.Value.ConnectionString);
 
     var mongoDatabase = mongoClient.GetDatabase(
-        familyParentageDatabaseSettings.Value.DatabaseName);
+      familyParentageDatabaseSettings.Value.DatabaseName);
 
     _familyCollection = mongoDatabase.GetCollection<Family>(
-        familyParentageDatabaseSettings.Value.ParentageCollectionName);
+      familyParentageDatabaseSettings.Value.ParentageCollectionName);
   }
 
   public async Task<List<Family>> GetAsync() =>
-      await _familyCollection.Find(_ => _.IDFAMILIAR != null).ToListAsync();
+    await _familyCollection.Find(_ => true).ToListAsync();
 
   public async Task<Family?> GetAsync(string id) =>
-      await _familyCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
+    await _familyCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
 
   public async Task CreateAsync(Family newFamily) =>
-      await _familyCollection.InsertOneAsync(newFamily);
+    await _familyCollection.InsertOneAsync(newFamily);
 
   public async Task UpdateAsync(string id, Family updatedFamily) =>
-      await _familyCollection.ReplaceOneAsync(x => x.Id == id, updatedFamily);
+    await _familyCollection.ReplaceOneAsync(x => x.Id == id, updatedFamily);
 
   public async Task RemoveAsync(string id) =>
-      await _familyCollection.DeleteOneAsync(x => x.Id == id);
+    await _familyCollection.DeleteOneAsync(x => x.Id == id);
 }
