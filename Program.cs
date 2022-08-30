@@ -23,6 +23,7 @@ builder.Services.Configure<FamilyParentageDatabaseSettings>(
 
 builder.Services.AddSingleton<BooksService>();
 builder.Services.AddSingleton<FamilyParentageService>();
+builder.Services.AddSingleton<FamilyUserParentageService>();
 // </snippet_BooksService>
 
 builder.Services.AddControllers()

@@ -22,7 +22,8 @@ public class FamilyParentageService
   }
 
   public async Task<List<Family>> GetAsync() =>
-      await _familyCollection.Find(_ => true).ToListAsync();
+      await _familyCollection.Find(_ => _.IDFAMILIAR != null).ToListAsync();
+
   public async Task<Family?> GetAsync(string id) =>
       await _familyCollection.Find(x => x.Id == id).FirstOrDefaultAsync();
 
