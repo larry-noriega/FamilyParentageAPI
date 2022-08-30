@@ -1,12 +1,12 @@
 // <snippet_UsingModels>
-using BookStoreApi.Models;
+using FamilyParentageApi.Models;
 using Microsoft.OpenApi.Models;
 // </snippet_UsingModels>
 // <snippet_UsingServices>
-using BookStoreApi.Services;
+using FamilyParentageApi.Services;
 // </snippet_UsingServices>
 // <snippet_UsingHelpers>
-using BookStoreApi.Helpers;
+using FamilyParentageApi.Helpers;
 // </snippet_UsingHelpers>
 
 // <snippet_AddControllers>

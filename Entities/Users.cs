@@ -1,4 +1,4 @@
-namespace BookStoreApi.Entities;
+namespace FamilyParentageApi.Entities;
 
 using System.Text.Json.Serialization;
 
@@ -10,5 +10,5 @@ public class User
   public string Username { get; set; } = null!;
 
   [JsonIgnore]
-  public string Password {get; set;} = null!;
+  public string Password { get; set; } = null!;
 }

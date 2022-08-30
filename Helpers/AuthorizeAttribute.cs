@@ -1,19 +1,19 @@
-namespace BookStoreApi.Helpers;
+namespace FamilyParentageApi.Helpers;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using BookStoreApi.Entities;
+using FamilyParentageApi.Entities;
 
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
 public class AuthorizeAttribute : Attribute, IAuthorizationFilter
 {
-    public void OnAuthorization(AuthorizationFilterContext context)
+  public void OnAuthorization(AuthorizationFilterContext context)
+  {
+    var user = (User?)context.HttpContext.Items["User"];
+    if (user == null)
     {
-        var user = (User?)context.HttpContext.Items["User"];
-        if (user == null)
-        {
-            // not logged in
-            context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
-        }
+      // not logged in
+      context.Result = new JsonResult(new { message = "Unauthorized" }) { StatusCode = StatusCodes.Status401Unauthorized };
     }
+  }
 }

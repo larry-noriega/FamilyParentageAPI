@@ -1,6 +1,6 @@
-namespace BookStoreApi.Helpers;
+namespace FamilyParentageApi.Helpers;
 
 public class AppSettings
 {
-  public string Secret { get; set;} = null!;
+  public string Secret { get; set; } = null!;
 }
